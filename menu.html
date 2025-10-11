@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100vh;
+        }
+
+        body {
+            background: linear-gradient(135deg, #c045d9 0%, #a820c0 50%, #8e18a0 100%);
+            font-family: 'Georgia', serif;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .menu-container {
+            max-width: 2200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 15px;
+            align-items: start;
+        }
+
+        .column {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 12px 0 8px 0;
+            text-align: center;
+        }
+
+        .menu-item {
+            margin-bottom: 12px;
+        }
+
+        .menu-container > .column:first-child .menu-item {
+            margin-bottom: 35px;
+        }
+
+        .drinks-section .menu-item {
+            margin-bottom: 6px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        .item-price {
+            font-weight: bold;
+            font-size: 28px;
+            margin-left: 10px;
+        }
+
+        .item-description {
+            font-size: 19px;
+            line-height: 1.1;
+            font-style: normal;
+        }
+
+        .section-header {
+            text-align: center;
+            font-size: 19px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .subsection {
+            margin: 40px 0;
+        }
+
+        .subsection-title {
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            margin: 30px 0 20px 0;
+        }
+
+        .kids-section {
+            margin-top: 60px;
+        }
+
+        .kids-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .kids-section .menu-item {
+            margin-bottom: 30px;
+        }
+
+        .kids-price {
+            font-size: 24px;
+            vertical-align: super;
+        }
+
+        .main-dishes-section {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-dishes-header {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .main-dishes-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .main-dishes-section .menu-item {
+            margin-bottom: 40px;
+        }
+
+        .drinks-section {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drinks-header {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .drinks-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 1200px) {
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+            .main-dishes-section {
+                grid-column: span 1;
+            }
+            .drinks-section {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <!-- STARTERS COLUMN -->
+        <div class="column">
+            <h1>STARTERS</h1>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <span class="item-name">ROASTED TOMATO SALSA</span>
+                    <span class="item-price">7</span>
+                </div>
+                <div class="item-description">
+                    Slow-roasted tomatoes blended with herbs and a hint of magic, served with crispy corn chips.
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <span class="item-name">GREEN HUMMUS</span>
+                    <span class="item-price">9</span>
+                </div>
+                <div class="item-description">
+                    A vibrant twist on the classic — earthy, herby, and totally fairy-approved.
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <span class="item-name">BEAN DIP</span>
+                    <span class="item-price">8</span>
+                </div>
+                <div class="item-description">
+                    A comforting roasted poblano and pinto bean blend — creamy, smoky, and addictive.
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <span class="item-name">PIMENTO CHEESE DIP</span>
+                    <span class="item-price">11</span>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <span class="item-name">HOT CHICKEN DIP</span>
+                    <span class="item-price">12</span>
+                </div>
+                <div class="item-description">
+                    Perfect for sharing (or not).
+                </div>
+            </div>
+
+            <!-- KIDS SECTION -->
+            <div class="kids-section">
+                <div class="kids-title">KIDS <span class="kids-price">5</span></div>
+
+                <div class="menu-item">
+                    <div class="item-name">QUESA-CUTIE</div>
+                    <div class="item-description">
+                        Delicious cheesy burst
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">PORKY POP TACOS</div>
+                    <div class="item-description">
+                        Two mini tacos with pulled pork and cheddar cheese — the perfect kid-size flavor burst.
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">CHICKIE CUTIE TACOS</div>
+                    <div class="item-description">
+                        Two tacos filled with tender chicken and melty cheddar — for our tiniest fairies with big appetites.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN DISHES SECTION -->
+        <div class="main-dishes-section">
+            <h1 class="main-dishes-header">MAIN DISHES</h1>
+            <div class="section-header">
+                Green onion & cilantro · radish · lime · side salsa<br>
+                Choose your style: Tacos (3) · Wraps · Bowls
+            </div>
+
+            <div class="main-dishes-columns">
+                <!-- MAIN DISHES COLUMN 1 -->
+                <div class="column">
+                    <!-- MORNING MAGIC -->
+                    <div class="subsection">
+                        <div class="subsection-title">MORNING MAGIC</div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">Morning Glow</span>
+                                <span class="item-price">15</span>
+                            </div>
+                            <div class="item-description">
+                                Fluffy butter-kissed eggs with your choice of chorizo, pulled pork, or bacon layered with roasted peppers, caramelized onions, and buttery cheddar. Comforting, golden, and full of glow.
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">The IT Girl</span>
+                                <span class="item-price">14</span>
+                            </div>
+                            <div class="item-description">
+                                Two eggs shining with sautéed zucchini, roasted peppers, and onions, finished with a sprinkle of cotija. Bright, balanced, and effortlessly cool — just like her name.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PLANT-POWERED VIBES -->
+                    <div class="subsection">
+                        <div class="subsection-title">PLANT-POWERED VIBES</div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">Bad B Soyrizo</span>
+                                <span class="item-price">16</span>
+                            </div>
+                            <div class="item-description">
+                                Vegan chorizo paired with creamy potatoes, pickled pepper, and smooth pinto bean dip. Spicy, smoky, and totally bad-B energy.
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">Glow Up Cauli</span>
+                                <span class="item-price">16</span>
+                            </div>
+                            <div class="item-description">
+                                Roasted cauliflower and sweet potato mingle with pickled onion and lentils, topped with peanut salsa macha and pepita granola. It's Cali-sunshine in a bite — vibrant, crunchy, and zen.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SAVORY & SOULFUL - First Item -->
+                    <div class="subsection">
+                        <div class="subsection-title">SAVORY & SOULFUL</div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">Vibe Check Chicken</span>
+                                <span class="item-price">15</span>
+                            </div>
+                            <div class="item-description">
+                                Braised chicken meets creamy chipotle hummus, kissed with carrot & cabbage slaw and cotija. Power-balanced and full of good-vibes only.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAIN DISHES COLUMN 2 -->
+                <div class="column">
+                    <!-- SAVORY & SOULFUL - Continued -->
+                    <div class="subsection">
+                        <div class="subsection-title">SAVORY & SOULFUL</div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">Slay My Pork</span>
+                                <span class="item-price">15</span>
+                            </div>
+                            <div class="item-description">
+                                Tender pulled pork stacked with tangy pickled cabbage slaw and pickled pepper, delivering soulful flavor every time.
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">Golden Hour Brisket</span>
+                                <span class="item-price">17</span>
+                            </div>
+                            <div class="item-description">
+                                Tomato-braised beef layered over cheesy polenta and roasted peppers & onions. Deep, rich, and glowing with golden-hour warmth.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COASTAL & SEA FAIRY ENERGY -->
+                    <div class="subsection">
+                        <div class="subsection-title">COASTAL & SEA FAIRY ENERGY</div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">Coastal Cutie Cod</span>
+                                <span class="item-price">17</span>
+                            </div>
+                            <div class="item-description">
+                                Blackened cod with pickled cabbage, silky crema, and lentils — light, ocean-kissed, and effortlessly chic.
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">Shrimply A Vibe</span>
+                                <span class="item-price">17</span>
+                            </div>
+                            <div class="item-description">
+                                Cajun-lime shrimp with crispy cabbage slaw, roasted corn, and avocado crema. A coastal dream with a spicy-sweet finish.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BOLD & BEAUTIFUL FLAVORS -->
+                    <div class="subsection">
+                        <div class="subsection-title">BOLD & BEAUTIFUL FLAVORS</div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">Mole La Mera Mera</span>
+                                <span class="item-price">16</span>
+                            </div>
+                            <div class="item-description">
+                                Our signature molé chicken with pickled fennel, creamy ricotta, lentils, and crunchy pepita granola. Rich, velvety, and the real main-character energy.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DRINKS SECTION -->
+        <div class="drinks-section">
+            <h1 class="drinks-header">DRINKS</h1>
+
+            <div class="drinks-columns">
+                <!-- DRINKS COLUMN 1 -->
+                <div class="column">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">MAGICAL HOT CHOCOLATE</span>
+                            <span class="item-price">14</span>
+                        </div>
+                        <div class="item-description">
+                            Steamed milk blended with pink or blue chocolate syrup, topped with toasted marshmallows, whipped cream painted half pink and half blue, edible glitter, cookies, and sprinkles.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">MANGO CREMA</span>
+                            <span class="item-price">12</span>
+                        </div>
+                        <div class="item-description">
+                            Creamy mango blend over ice layered with shortcake, whipped cream, toasted marshmallows, vanilla wafers, and pineapple birria.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">STRAWBERRY CREMA</span>
+                            <span class="item-price">12</span>
+                        </div>
+                        <div class="item-description">
+                            Strawberry cream layered with shortcake, whipped cream, strawberry slices, wafers, cookies, and birria — pink perfection in a cup.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">MAGICAL HORCHATA</span>
+                            <span class="item-price">12</span>
+                        </div>
+                        <div class="item-description">
+                            Classic horchata with whipped cream, cinnamon powder, and a skewer of Sponch and Mazapán candy, topped with a caramel lollipop.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">AGUA FRESCA LOCA</span>
+                            <span class="item-price">11</span>
+                        </div>
+                        <div class="item-description">
+                            Choose mango, piña, hibiscus and cucumber — served with chamoy candies galore.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">SPARKLING SENSATION</span>
+                            <span class="item-price">9</span>
+                        </div>
+                        <div class="item-description">
+                            A fizzy fun drink, elevated with your choice of natural lotus or redbull. Topped with a sprinkle of magical candies and edible glitter.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">LEMON BLOSSOM MOCKTAIL</span>
+                            <span class="item-price">9</span>
+                        </div>
+                        <div class="item-description">
+                            Lemonade infused with dragon fruit syrup and butterfly pea flower, topped with edible glitter and hand spun cotton candy
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">STRAWBERRY & ROSE MOCKTAIL</span>
+                            <span class="item-price">9</span>
+                        </div>
+                        <div class="item-description">
+                            Rose syrup and strawberry puree and Brazilian lemonade topped with cotton candy and edible flowers.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DRINKS COLUMN 2 -->
+                <div class="column">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">CRÈME BRÛLÉE LATTE</span>
+                            <span class="item-price">12</span>
+                        </div>
+                        <div class="item-description">
+                            Crème-caramel syrup with espresso or matcha, topped with mascarpone cream caramel cold foam, Torched Sugar, and gold flakes.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">S'MORES LATTE</span>
+                            <span class="item-price">13</span>
+                        </div>
+                        <div class="item-description">
+                            Espresso or matcha, marshmallow syrup, white chocolate, cold foam. Finished with graham crumble, chocolate drizzle, and gold dust.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">FLORAL ESSENCE</span>
+                            <span class="item-price">9</span>
+                        </div>
+                        <div class="item-description">
+                            A serene blend, your choice of Matcha,Chai or Latte infused with your choice of floral essence: Chamomile, Lavender, Rose or Butterflypea. Topped with a floral foam
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">BANANA PUDDING LATTE</span>
+                            <span class="item-price">13</span>
+                        </div>
+                        <div class="item-description">
+                            Espresso or matcha with house-made banana syrup topped with banana pudding, Nilla cookies, and dried banana chips.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">PISTACHIO GLOW LATTE</span>
+                            <span class="item-price">12</span>
+                        </div>
+                        <div class="item-description">
+                            Matcha or espresso swirled with pistachio syrup and white chocolate, topped with cold foam and pistachio crumble.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">PUMPKIN SPICE LATTE</span>
+                            <span class="item-price">16</span>
+                        </div>
+                        <div class="item-description">
+                            Chai or espresso with house made pumpkin syrup and a delicious cold foam finished with pumpkin donut and fall cookie.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">DONUT LATTE</span>
+                            <span class="item-price">12</span>
+                        </div>
+                        <div class="item-description">
+                            Espresso with chocolate syrup rimmed with toasted marshmallow fluff and topped with a white chocolate cold foam glazed donut and fairy sprinkles.
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <span class="item-name">DUVALINE LATTE</span>
+                            <span class="item-price">12</span>
+                        </div>
+                        <div class="item-description">
+                            Golden-edged and rimmed with marshmallow fluff, this latte swirls strawberry syrup, white-chocolate drizzle, and a touch of strawberry jam into velvety cold foam. Finished with colorful sprinkles for a candy-shop glow.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
