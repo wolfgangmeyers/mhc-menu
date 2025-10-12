@@ -180,6 +180,100 @@
                 grid-column: span 1;
             }
         }
+
+        /* Fairy Animation */
+        .fairy {
+            position: fixed;
+            bottom: -300px;
+            width: 512px;
+            height: 256px;
+            background-image: url('fairy-sprite.png');
+            background-size: 10100% 100%; /* 101 frames in horizontal row */
+            background-repeat: no-repeat;
+            background-position: 0% 0%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+        }
+
+        .fairy.left {
+            left: 20px;
+        }
+
+        .fairy.right {
+            right: 20px;
+        }
+
+        /* Animation for sprite frames */
+        @keyframes fairy-wave {
+            from {
+                background-position: 0% 0%;
+            }
+            to {
+                background-position: 100% 0%;
+            }
+        }
+
+        /* Animation for sliding up and down on left side */
+        @keyframes fairy-appear-left {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            10% {
+                transform: translateY(-300px);
+            }
+            85% {
+                transform: translateY(-300px);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+        }
+
+        /* Animation for sliding up and down on right side */
+        @keyframes fairy-appear-right {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            10% {
+                transform: translateY(-300px);
+            }
+            85% {
+                transform: translateY(-300px);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+        }
+
+        /* Combined animation classes */
+        .fairy.animate-left {
+            animation:
+                fairy-appear-left 4s ease-in-out forwards,
+                fairy-wave 4s steps(100) forwards;
+        }
+
+        .fairy.animate-right {
+            animation:
+                fairy-appear-right 4s ease-in-out forwards,
+                fairy-wave 4s steps(100) forwards;
+        }
     </style>
 </head>
 <body>
@@ -582,11 +676,44 @@
             </div>
         </div>
     </div>
+
+    <!-- Fairy Animation Elements -->
+    <div class="fairy left" id="fairy-left"></div>
+    <div class="fairy right" id="fairy-right"></div>
+
     <script>
         // Auto-refresh page every minute to catch updates
         setInterval(function() {
             location.reload();
         }, 60000); // 60000ms = 1 minute
+
+        // Fairy animation sequence
+        function runFairyAnimation() {
+            const fairyLeft = document.getElementById('fairy-left');
+            const fairyRight = document.getElementById('fairy-right');
+
+            // Remove classes if they exist (for repeat animations)
+            fairyLeft.classList.remove('animate-left');
+            fairyRight.classList.remove('animate-right');
+
+            // Force reflow to restart animation
+            void fairyLeft.offsetWidth;
+            void fairyRight.offsetWidth;
+
+            // First animation - left side
+            fairyLeft.classList.add('animate-left');
+
+            // After 4 seconds (left animation complete), wait 2 seconds, then animate right
+            setTimeout(function() {
+                fairyRight.classList.add('animate-right');
+            }, 6000); // 4s animation + 2s delay
+        }
+
+        // Start after 2 seconds
+        setTimeout(runFairyAnimation, 2000);
+
+        // Repeat every 25 seconds
+        setInterval(runFairyAnimation, 25000);
     </script>
 </body>
 </html>
