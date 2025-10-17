@@ -45,7 +45,8 @@ Vertical spacing is intentionally different across sections:
 
 This repository is configured for GitHub Pages deployment:
 - The `index.html` file is served directly
-- Auto-refresh ensures visitors see updates within 60 seconds of deployment
+- **IMPORTANT**: When updating the menu, you MUST increment the version number in `version.txt` to trigger auto-refresh on client devices
+- The page checks `version.txt` every 30 seconds and reloads only if the version has changed
 - Push to `main` branch to deploy changes
 
 ## Making Changes
@@ -55,11 +56,20 @@ When editing menu content:
 2. Keep spacing rules consistent per section
 3. Verify all menu items match any source images (use verification agents if needed)
 4. Test responsive behavior (collapses to single column at max-width: 1200px)
+5. **CRITICAL**: After making changes to `index.html`, increment the number in `version.txt` to trigger client auto-refresh
 
 When editing styles:
 - All styles are in the `<style>` tag - no external CSS files
 - Changes to spacing should respect the intentional differences between sections
-- The purple gradient is: `linear-gradient(135deg, #c045d9 0%, #a820c0 50%, #8e18a0 100%)`
+- The purple gradient overlay is: `linear-gradient(135deg, #c045d9 0%, #a820c0 50%, #8e18a0 100%)` at 50% opacity over the cherry blossom background
+
+## Version Control System
+
+The menu uses a version-based auto-refresh system:
+- `version.txt` contains a simple version number (increment by 1 each update)
+- Client browsers check this file every 30 seconds
+- If the version changes, the page automatically reloads to show the latest menu
+- **Always increment `version.txt` when updating `index.html`** - this is how clients know to refresh
 
 ## Fairy Animation Feature
 

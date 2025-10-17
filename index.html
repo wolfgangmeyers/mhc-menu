@@ -22,6 +22,12 @@
             color: #fff;
             padding: 40px 20px;
             position: relative;
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+
+        body.loaded {
+            opacity: 1;
         }
 
         body::before {
@@ -699,10 +705,41 @@
     <div class="fairy right" id="fairy-right"></div>
 
     <script>
-        // Auto-refresh page every minute to catch updates
-        setInterval(function() {
-            location.reload();
-        }, 60000); // 60000ms = 1 minute
+        // Show page once fully loaded to prevent flash of unstyled content
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Version-based auto-refresh system (only works when served over HTTP/HTTPS)
+        let currentVersion = null;
+
+        async function checkVersion() {
+            // Only check version when served over HTTP/HTTPS (not file://)
+            if (window.location.protocol === 'file:') {
+                return;
+            }
+
+            try {
+                const response = await fetch('version.txt?t=' + Date.now());
+                const version = await response.text();
+
+                if (currentVersion === null) {
+                    // First load - store the version
+                    currentVersion = version.trim();
+                } else if (version.trim() !== currentVersion) {
+                    // Version changed - reload the page
+                    location.reload();
+                }
+            } catch (error) {
+                console.error('Error checking version:', error);
+            }
+        }
+
+        // Check version on load
+        checkVersion();
+
+        // Check for updates every minute
+        setInterval(checkVersion, 60000); // 60000ms = 1 minute
 
         // Fairy animation sequence
         function runFairyAnimation() {
