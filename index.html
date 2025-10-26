@@ -739,9 +739,21 @@
         checkVersion();
 
         // Check for updates every minute
-        setInterval(checkVersion, 60000); // 60000ms = 1 minute
+        const versionCheckInterval = setInterval(checkVersion, 60000); // 60000ms = 1 minute
+
+        // Force reload every 3 hours to prevent memory leaks from long-running animations
+        setTimeout(function() {
+            location.reload();
+        }, 3 * 60 * 60 * 1000); // 3 hours in milliseconds
+
+        // Clean up version check interval before unload
+        window.addEventListener('beforeunload', function() {
+            clearInterval(versionCheckInterval);
+        });
 
         // Fairy animation sequence
+        let fairyInterval = null;
+
         function runFairyAnimation() {
             const fairyLeft = document.getElementById('fairy-left');
             const fairyRight = document.getElementById('fairy-right');
@@ -758,16 +770,24 @@
             fairyLeft.classList.add('animate-left');
 
             // After 4 seconds (left animation complete), wait 2 seconds, then animate right
+            // No need to track this timeout - it completes and gets garbage collected
             setTimeout(function() {
                 fairyRight.classList.add('animate-right');
             }, 6000); // 4s animation + 2s delay
         }
 
+        // Clean up interval before page unloads
+        window.addEventListener('beforeunload', function() {
+            if (fairyInterval) {
+                clearInterval(fairyInterval);
+            }
+        });
+
         // Start after 2 seconds
         setTimeout(runFairyAnimation, 2000);
 
         // Repeat every 25 seconds
-        setInterval(runFairyAnimation, 25000);
+        fairyInterval = setInterval(runFairyAnimation, 25000);
     </script>
 </body>
 </html>
