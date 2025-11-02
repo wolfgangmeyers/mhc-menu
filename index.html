@@ -204,6 +204,113 @@
             }
         }
 
+        /* Limited Mode Styles */
+        body.limited-mode .menu-container {
+            grid-template-columns: 1fr 1fr 1fr;
+            max-width: 1800px;
+            gap: 60px;
+        }
+
+        body.limited-mode .main-dishes-section {
+            grid-column: span 1;
+        }
+
+        body.limited-mode .drinks-section {
+            grid-column: span 1;
+        }
+
+        body.limited-mode .main-dishes-columns {
+            grid-template-columns: 1fr;
+        }
+
+        body.limited-mode .drinks-columns {
+            grid-template-columns: 1fr;
+        }
+
+        /* Hide elements not in limited mode */
+        body.limited-mode .menu-item:not([data-limited]),
+        body.limited-mode .subsection-title,
+        body.limited-mode .section-header:not([data-limited]),
+        body.limited-mode h1:not([data-limited]) {
+            display: none;
+        }
+
+        /* Hide STARTERS section title in limited mode, show only KIDS */
+        body.limited-mode .menu-container > .column:first-child > h1 {
+            display: none;
+        }
+
+        /* Adjust spacing in limited mode */
+        body.limited-mode .kids-section {
+            margin-top: 0;
+        }
+
+        /* Hide subsections in limited mode to prevent spacing gaps */
+        body.limited-mode .subsection {
+            margin: 0;
+        }
+
+        /* Increase spacing between visible items in limited mode */
+        body.limited-mode .menu-item[data-limited] {
+            margin-bottom: 50px;
+        }
+
+        body.limited-mode .kids-section .menu-item[data-limited] {
+            margin-bottom: 80px;
+        }
+
+        body.limited-mode .drinks-section .menu-item[data-limited] {
+            margin-bottom: 35px;
+        }
+
+        /* Increase font sizes in limited mode */
+        body.limited-mode .item-name {
+            font-size: 48px;
+        }
+
+        body.limited-mode .item-price {
+            font-size: 48px;
+        }
+
+        body.limited-mode .item-description {
+            font-size: 32px;
+            line-height: 1.2;
+        }
+
+        body.limited-mode .main-dishes-header,
+        body.limited-mode .drinks-header {
+            font-size: 56px;
+        }
+
+        body.limited-mode .section-header {
+            font-size: 28px;
+        }
+
+        body.limited-mode .kids-title {
+            font-size: 42px;
+        }
+
+        body.limited-mode .kids-price {
+            font-size: 36px;
+        }
+
+        /* Increase kids section text size even more */
+        body.limited-mode .kids-section .item-name {
+            font-size: 48px;
+        }
+
+        body.limited-mode .kids-section .item-description {
+            font-size: 48px;
+        }
+
+        body.limited-mode .kids-title {
+            font-size: 42px;
+        }
+
+        body.limited-mode .kids-price {
+            font-size: 36px;
+        }
+
         /* Fairy Animation */
         .fairy {
             position: fixed;
@@ -356,7 +463,7 @@
             <div class="kids-section">
                 <div class="kids-title">KIDS <span class="kids-price">5</span></div>
 
-                <div class="menu-item">
+                <div class="menu-item" data-limited>
                     <div class="item-name">QUESA-CUTIE</div>
                     <div class="item-description">
                         Delicious cheesy burst
@@ -370,7 +477,7 @@
                     </div>
                 </div>
 
-                <div class="menu-item">
+                <div class="menu-item" data-limited>
                     <div class="item-name">CHICKIE CUTIE TACOS</div>
                     <div class="item-description">
                         Two tacos filled with tender chicken and melty cheddar — for our tiniest fairies with big appetites.
@@ -381,10 +488,10 @@
 
         <!-- MAIN DISHES SECTION -->
         <div class="main-dishes-section">
-            <h1 class="main-dishes-header">MAIN DISHES</h1>
-            <div class="section-header">
+            <h1 class="main-dishes-header" data-limited>MAIN DISHES</h1>
+            <div class="section-header" data-limited>
                 Green onion & cilantro · radish · lime · side salsa<br>
-                Choose your style: Tacos (3) · Wraps · Bowls
+                Choose your style: Tacos (3) · Bowls
             </div>
 
             <div class="main-dishes-columns">
@@ -429,7 +536,7 @@
                             </div>
                         </div>
 
-                        <div class="menu-item">
+                        <div class="menu-item" data-limited>
                             <div class="item-header">
                                 <span class="item-name">Glow Up Cauli</span>
                                 <span class="item-price">16</span>
@@ -444,7 +551,7 @@
                     <div class="subsection">
                         <div class="subsection-title">SAVORY & SOULFUL</div>
 
-                        <div class="menu-item">
+                        <div class="menu-item" data-limited>
                             <div class="item-header">
                                 <span class="item-name">Vibe Check Chicken</span>
                                 <span class="item-price">15</span>
@@ -512,9 +619,9 @@
                     <div class="subsection">
                         <div class="subsection-title">BOLD & BEAUTIFUL FLAVORS</div>
 
-                        <div class="menu-item">
+                        <div class="menu-item" data-limited>
                             <div class="item-header">
-                                <span class="item-name">Mole La Mera Mera</span>
+                                <span class="item-name">Molé La Mera Mera</span>
                                 <span class="item-price">16</span>
                             </div>
                             <div class="item-description">
@@ -528,11 +635,20 @@
 
         <!-- DRINKS SECTION -->
         <div class="drinks-section">
-            <h1 class="drinks-header">DRINKS</h1>
+            <h1 class="drinks-header" data-limited>DRINKS</h1>
 
             <div class="drinks-columns">
                 <!-- DRINKS COLUMN 1 -->
                 <div class="column">
+                    <div class="menu-item" data-limited>
+                        <div class="item-header">
+                            <span class="item-name">SPOOKY LEMONADE</span>
+                        </div>
+                        <div class="item-description">
+                            A chillingly sweet twist on our classic lemonade — topped with fluffy coconut cold foam, and creepy-cute Halloween toppings! Perfectly refreshing with a spooky flair that's all treat, no trick!
+                        </div>
+                    </div>
+
                     <div class="menu-item">
                         <div class="item-header">
                             <span class="item-name">MAGICAL HOT CHOCOLATE</span>
@@ -563,7 +679,7 @@
                         </div>
                     </div>
 
-                    <div class="menu-item">
+                    <div class="menu-item" data-limited>
                         <div class="item-header">
                             <span class="item-name">MAGICAL HORCHATA</span>
                             <span class="item-price">12</span>
@@ -666,7 +782,7 @@
                         </div>
                     </div>
 
-                    <div class="menu-item">
+                    <div class="menu-item" data-limited>
                         <div class="item-header">
                             <span class="item-name">PUMPKIN SPICE LATTE</span>
                             <span class="item-price">16</span>
@@ -788,6 +904,14 @@
 
         // Repeat every 25 seconds
         fairyInterval = setInterval(runFairyAnimation, 25000);
+
+        // Toggle limited mode with spacebar
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' && event.target === document.body) {
+                event.preventDefault();
+                document.body.classList.toggle('limited-mode');
+            }
+        });
     </script>
 </body>
 </html>
