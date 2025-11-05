@@ -1128,15 +1128,15 @@
 
                 const state = houseFlickerState[house.id];
 
-                // Every 15-45 frames (0.25-0.75 seconds at 60fps), pick a new target
+                // Every 7-22 frames (0.12-0.37 seconds at 60fps), pick a new target
                 state.changeCounter++;
-                if (state.changeCounter > 15 + Math.random() * 30) {
+                if (state.changeCounter > 7 + Math.random() * 15) {
                     state.targetOpacity = 0.3 + Math.random() * 0.4; // Range 0.3-0.7
                     state.changeCounter = 0;
                 }
 
                 // Smoothly interpolate toward target (ease)
-                const ease = 0.12; // Medium speed
+                const ease = 0.24; // Fast speed
                 state.currentOpacity += (state.targetOpacity - state.currentOpacity) * ease;
 
                 element.style.opacity = state.currentOpacity;
