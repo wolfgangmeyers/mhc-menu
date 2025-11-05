@@ -2,7 +2,7 @@ from PIL import Image
 import os
 
 # Directory containing frames
-frames_dir = "reduced_frames"
+frames_dir = "santa_frames"
 
 # Get all frame files
 frame_files = sorted([f for f in os.listdir(frames_dir) if f.endswith(".png")])

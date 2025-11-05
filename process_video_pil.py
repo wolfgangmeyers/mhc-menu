@@ -4,10 +4,10 @@ import os
 import json
 
 # Input video file
-video_file = "dreamina-2025-10-12-3065-The fairy is smiling and waving to the v....mp4"
+video_file = r"C:\Users\wolfg\Downloads\grok-video-092ba2dd-d87f-4bdb-8079-aa5103d7d64c.mp4"
 
 # Create output directory
-output_dir = "frames"
+output_dir = "santa_frames"
 os.makedirs(output_dir, exist_ok=True)
 
 print("Attempting to extract frames using available tools...")
@@ -30,17 +30,11 @@ try:
         # Convert to PIL Image
         img = Image.fromarray(frame)
 
-        # Get dimensions
-        width, height = img.size
-
-        # Crop to top half
-        cropped_img = img.crop((0, 0, width, height // 2))
-
-        # Resize to 512px width (maintaining aspect ratio)
+        # Resize to 512px width (maintaining aspect ratio) - no cropping for Santa
         new_width = 512
-        aspect_ratio = cropped_img.height / cropped_img.width
+        aspect_ratio = img.height / img.width
         new_height = int(new_width * aspect_ratio)
-        resized_img = cropped_img.resize((new_width, new_height), Image.Resampling.LANCZOS)
+        resized_img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
         # Save frame
         output_path = os.path.join(output_dir, f"frame_{frame_count:04d}.png")
@@ -63,7 +57,7 @@ except ImportError:
         if result.returncode == 0:
             print(f"Found ffmpeg at: {result.stdout.strip()}")
             print("Please run this command manually:")
-            print(f'ffmpeg -i "{video_file}" -vf "crop=iw:ih/2:0:0,scale=512:-1" {output_dir}/frame_%04d.png')
+            print(f'ffmpeg -i "{video_file}" -vf "scale=512:-1" {output_dir}/frame_%04d.png')
         else:
             print("ffmpeg not found in PATH")
     except Exception as e:
