@@ -322,9 +322,9 @@
             position: fixed;
             bottom: -300px;
             width: 512px;
-            height: 256px;
-            background-image: url('fairy-sprite.png');
-            background-size: 10100% 100%; /* 101 frames in horizontal row */
+            height: 512px;
+            background-image: url('fairy-sprite.png?v=50');
+            background-size: 14500% 100%; /* 145 frames in horizontal row */
             background-repeat: no-repeat;
             background-position: 0% 0%;
             pointer-events: none;
@@ -401,14 +401,14 @@
         /* Combined animation classes */
         .fairy.animate-left {
             animation:
-                fairy-appear-left 4s ease-in-out forwards,
-                fairy-wave 4s steps(100) forwards;
+                fairy-appear-left 8s ease-in-out forwards,
+                fairy-wave 8s steps(144) forwards;
         }
 
         .fairy.animate-right {
             animation:
-                fairy-appear-right 4s ease-in-out forwards,
-                fairy-wave 4s steps(100) forwards;
+                fairy-appear-right 8s ease-in-out forwards,
+                fairy-wave 8s steps(144) forwards;
         }
 
         /* House Light Overlays */
@@ -1029,11 +1029,11 @@
             // First animation - left side
             fairyLeft.classList.add('animate-left');
 
-            // After 4 seconds (left animation complete), wait 2 seconds, then animate right
+            // After 8 seconds (left animation complete), wait 2 seconds, then animate right
             // No need to track this timeout - it completes and gets garbage collected
             setTimeout(function() {
                 fairyRight.classList.add('animate-right');
-            }, 6000); // 4s animation + 2s delay
+            }, 12000); // 8s animation + 4s delay
         }
 
         // Clean up interval before page unloads
@@ -1044,12 +1044,10 @@
         });
 
         // Start after 2 seconds
-        // DISABLED: Uncomment to restore fairy animation
-        // setTimeout(runFairyAnimation, 2000);
+        setTimeout(runFairyAnimation, 2000);
 
         // Repeat every 25 seconds
-        // DISABLED: Uncomment to restore fairy animation
-        // fairyInterval = setInterval(runFairyAnimation, 25000);
+        fairyInterval = setInterval(runFairyAnimation, 25000);
 
         // House positioning and flickering
         const bgImageWidth = 1536;
