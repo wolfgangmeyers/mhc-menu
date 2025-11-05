@@ -1073,37 +1073,39 @@
             const bgRatio = bgImageWidth / bgImageHeight;
             const viewportRatio = viewportWidth / viewportHeight;
 
-            let scale, offsetX, offsetY;
+            let scaleBase;
 
             if (viewportRatio > bgRatio) {
-                // Viewport is wider - scale by width
-                scale = viewportWidth / bgImageWidth;
-                const scaledHeight = bgImageHeight * scale;
-                offsetX = 0;
-                offsetY = (viewportHeight - scaledHeight) / 2;
+                // Viewport is wider - background scales to viewport width
+                scaleBase = 100 / bgImageWidth; // vw per pixel
+                const bgHeightInVw = (bgImageHeight * scaleBase);
+                const offsetY = (100 - (bgHeightInVw * viewportWidth / viewportHeight)) / 2;
+
+                houses.forEach(house => {
+                    const element = document.getElementById(house.id);
+                    if (element) {
+                        element.style.left = (house.x * scaleBase) + 'vw';
+                        element.style.top = (house.y * scaleBase * viewportWidth / viewportHeight + offsetY) + 'vh';
+                        element.style.width = (house.width * scaleBase) + 'vw';
+                        element.style.height = (house.height * scaleBase * viewportWidth / viewportHeight) + 'vh';
+                    }
+                });
             } else {
-                // Viewport is taller - scale by height
-                scale = viewportHeight / bgImageHeight;
-                const scaledWidth = bgImageWidth * scale;
-                offsetX = (viewportWidth - scaledWidth) / 2;
-                offsetY = 0;
+                // Viewport is taller - background scales to viewport height
+                scaleBase = 100 / bgImageHeight; // vh per pixel
+                const bgWidthInVh = (bgImageWidth * scaleBase);
+                const offsetX = (100 - (bgWidthInVh * viewportHeight / viewportWidth)) / 2;
+
+                houses.forEach(house => {
+                    const element = document.getElementById(house.id);
+                    if (element) {
+                        element.style.left = (house.x * scaleBase * viewportHeight / viewportWidth + offsetX) + 'vw';
+                        element.style.top = (house.y * scaleBase) + 'vh';
+                        element.style.width = (house.width * scaleBase * viewportHeight / viewportWidth) + 'vw';
+                        element.style.height = (house.height * scaleBase) + 'vh';
+                    }
+                });
             }
-
-            // Position each house
-            houses.forEach(house => {
-                const element = document.getElementById(house.id);
-                if (element) {
-                    const scaledX = house.x * scale + offsetX;
-                    const scaledY = house.y * scale + offsetY;
-                    const scaledWidth = house.width * scale;
-                    const scaledHeight = house.height * scale;
-
-                    element.style.left = scaledX + 'px';
-                    element.style.top = scaledY + 'px';
-                    element.style.width = scaledWidth + 'px';
-                    element.style.height = scaledHeight + 'px';
-                }
-            });
         }
 
         // Position houses on load and resize
