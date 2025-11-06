@@ -54,12 +54,60 @@
             z-index: 3;
         }
 
+        /* Food Mode Layout - optimized for wider spacing */
+        body.mode-food .menu-container {
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            max-width: 2400px;
+            gap: 50px;
+        }
+
+        body.mode-food .breakfast-and-mains-wrapper {
+            grid-column: span 3;
+        }
+
+        body.mode-food .breakfast-toast-columns {
+            gap: 40px;
+        }
+
+        body.mode-food .main-dishes-columns {
+            gap: 40px;
+        }
+
+        /* Drinks Mode Layout - expand to use full width */
+        body.mode-drinks .menu-container {
+            grid-template-columns: 1fr;
+            max-width: 2400px;
+        }
+
+        body.mode-drinks .drinks-section {
+            grid-column: span 1;
+        }
+
+        body.mode-drinks .drinks-columns {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        body.mode-drinks .drinks-centered {
+            max-width: 700px;
+        }
+
+        /* Hide sections based on mode */
+        body.mode-drinks .menu-container > .column:first-child,
+        body.mode-drinks .breakfast-and-mains-wrapper {
+            display: none;
+        }
+
+        body.mode-food .drinks-section {
+            display: none;
+        }
+
         .column {
             padding: 20px;
         }
 
         h1 {
-            font-size: 32px;
+            font-size: 48px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 15px;
@@ -67,7 +115,7 @@
         }
 
         h2 {
-            font-size: 20px;
+            font-size: 30px;
             font-weight: bold;
             margin: 12px 0 8px 0;
             text-align: center;
@@ -94,25 +142,25 @@
 
         .item-name {
             font-weight: bold;
-            font-size: 28px;
+            font-size: 42px;
             text-transform: uppercase;
         }
 
         .item-price {
             font-weight: bold;
-            font-size: 28px;
+            font-size: 42px;
             margin-left: 10px;
         }
 
         .item-description {
-            font-size: 19px;
+            font-size: 28px;
             line-height: 1.1;
             font-style: normal;
         }
 
         .section-header {
             text-align: center;
-            font-size: 19px;
+            font-size: 28px;
             margin-bottom: 10px;
             line-height: 1.4;
         }
@@ -123,7 +171,7 @@
 
         .subsection-title {
             font-weight: bold;
-            font-size: 20px;
+            font-size: 30px;
             text-align: center;
             margin: 15px 0 10px 0;
         }
@@ -133,7 +181,7 @@
         }
 
         .kids-title {
-            font-size: 28px;
+            font-size: 42px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 30px;
@@ -144,7 +192,7 @@
         }
 
         .kids-price {
-            font-size: 24px;
+            font-size: 36px;
             vertical-align: super;
         }
 
@@ -161,7 +209,7 @@
         }
 
         .breakfast-toast-header {
-            font-size: 32px;
+            font-size: 48px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 20px;
@@ -179,7 +227,7 @@
         }
 
         .breakfast-toast-centered {
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -190,7 +238,7 @@
         }
 
         .main-dishes-header {
-            font-size: 32px;
+            font-size: 48px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 15px;
@@ -220,16 +268,34 @@
         }
 
         .drinks-header {
-            font-size: 32px;
+            font-size: 48px;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 5px;
             letter-spacing: 2px;
+        }
+
+        .drinks-section .subsection:first-child {
+            margin-top: 0;
+        }
+
+        .drinks-section .subsection-title {
+            margin-top: 5px;
+        }
+
+        .drinks-centered {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .drinks-centered .subsection {
+            margin-top: 0;
         }
 
         .drinks-columns {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 15px;
         }
 
@@ -245,19 +311,31 @@
             }
         }
 
-        /* Limited Mode Styles */
+        /* Limited Mode Styles - override mode-specific hiding */
         body.limited-mode .menu-container {
-            grid-template-columns: 1fr 1fr 1fr;
-            max-width: 1800px;
-            gap: 60px;
+            grid-template-columns: 1fr 1fr 1fr !important;
+            max-width: 1800px !important;
+            gap: 60px !important;
         }
 
         body.limited-mode .breakfast-and-mains-wrapper {
-            grid-column: span 1;
+            grid-column: span 1 !important;
         }
 
         body.limited-mode .drinks-section {
-            grid-column: span 1;
+            grid-column: span 1 !important;
+        }
+
+        /* Show all sections in limited mode regardless of query param */
+        body.limited-mode .menu-container > .column:first-child,
+        body.limited-mode .breakfast-and-mains-wrapper,
+        body.limited-mode .drinks-section {
+            display: block !important;
+        }
+
+        /* Reset drinks columns in limited mode */
+        body.limited-mode .drinks-columns {
+            grid-template-columns: 1fr !important;
         }
 
         body.limited-mode .breakfast-toast-columns {
@@ -690,8 +768,8 @@
             <div class="breakfast-toast-centered">
                 <div class="menu-item">
                     <div class="item-header">
-                        <span class="item-name">LA DOLCE VIDA SANDWICH</span>
-                        <span class="item-price">16</span>
+                        <span class="item-name">LA DOLCE VIDA</span>
+                        <span class="item-price">13</span>
                     </div>
                     <div class="item-description">
                         Homemade toasted bread layered with basil olive oil, creamy mayo, fresh mozzarella, tomatoes, lettuce, and smoky bacon, finished with a balsamic glaze. Soft, juicy, and full of main-character energy — because your life should taste like vacation
@@ -775,16 +853,6 @@
 
                         <div class="menu-item">
                             <div class="item-header">
-                                <span class="item-name">Coastal Cutie Cod</span>
-                                <span class="item-price">17</span>
-                            </div>
-                            <div class="item-description">
-                                Blackened cod with pickled cabbage, silky crema, and lentils — light, ocean-kissed, and effortlessly chic.
-                            </div>
-                        </div>
-
-                        <div class="menu-item">
-                            <div class="item-header">
                                 <span class="item-name">Shrimply A Vibe</span>
                                 <span class="item-price">17</span>
                             </div>
@@ -793,20 +861,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="main-dishes-centered">
-                <div class="subsection">
-                    <div class="subsection-title">BOLD & BEAUTIFUL FLAVORS</div>
+                    <!-- BOLD & BEAUTIFUL FLAVORS -->
+                    <div class="subsection">
+                        <div class="subsection-title">BOLD & BEAUTIFUL FLAVORS</div>
 
-                    <div class="menu-item" data-limited>
-                        <div class="item-header">
-                            <span class="item-name">Molé La Mera Mera</span>
-                            <span class="item-price">16</span>
-                        </div>
-                        <div class="item-description">
-                            Our signature molé chicken with pickled fennel, creamy ricotta, queso fresco, and crunchy house made granola. Rich, velvety, and the real main-character energy.
+                        <div class="menu-item" data-limited>
+                            <div class="item-header">
+                                <span class="item-name">Molé La Mera Mera</span>
+                                <span class="item-price">16</span>
+                            </div>
+                            <div class="item-description">
+                                Our signature molé chicken with pickled fennel, creamy ricotta, queso fresco, and crunchy house made granola. Rich, velvety, and the real main-character energy.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -871,6 +938,24 @@
                         </div>
                     </div>
 
+                    <!-- SEASONAL GLOW -->
+                    <div class="subsection">
+                        <div class="subsection-title">SEASONAL GLOW</div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">SANTA'S COZY HOT CHOCOLATE</span>
+                                <span class="item-price">15</span>
+                            </div>
+                            <div class="item-description">
+                                Warm, red-tinted  house chocolate sauce, finished with whipped cream, toasted marshmallows, Christmas cookies, hand spun cotton candy, and festive marshmallow characters on a Teddy Graham cookie rim. Add our house-made peppermint syrup for holiday sparkle.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DRINKS COLUMN 2 -->
+                <div class="column">
                     <!-- SPARKLING ELIXIRS -->
                     <div class="subsection">
                         <div class="subsection-title">SPARKLING ELIXIRS</div>
@@ -905,9 +990,34 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- MATCHA GLOW -->
+                    <div class="subsection">
+                        <div class="subsection-title">MATCHA GLOW</div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">FLORAL ESSENCE</span>
+                                <span class="item-price">9</span>
+                            </div>
+                            <div class="item-description">
+                                A serene blend, your choice of Matcha,Chai or Latte infused with your choice of floral essence: Chamomile, Lavender, Rose or Butterflypea. Topped with a floral foam
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <span class="item-name">MATCHA EGGNOG LATTE</span>
+                                <span class="item-price">14</span>
+                            </div>
+                            <div class="item-description">
+                                Hand-whisked ceremonial-grade matcha layered with eggnog finished with matcha cold foam and winter goodie garnish. Silky, cozy, lightly sweet — matcha meets holiday glow.
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- DRINKS COLUMN 2 -->
+                <!-- DRINKS COLUMN 3 -->
                 <div class="column">
                     <!-- COZY ESPRESSO ENERGY -->
                     <div class="subsection">
@@ -944,31 +1054,6 @@
                         </div>
                     </div>
 
-                    <!-- MATCHA GLOW -->
-                    <div class="subsection">
-                        <div class="subsection-title">MATCHA GLOW</div>
-
-                        <div class="menu-item">
-                            <div class="item-header">
-                                <span class="item-name">FLORAL ESSENCE</span>
-                                <span class="item-price">9</span>
-                            </div>
-                            <div class="item-description">
-                                A serene blend, your choice of Matcha,Chai or Latte infused with your choice of floral essence: Chamomile, Lavender, Rose or Butterflypea. Topped with a floral foam
-                            </div>
-                        </div>
-
-                        <div class="menu-item">
-                            <div class="item-header">
-                                <span class="item-name">MATCHA EGGNOG LATTE</span>
-                                <span class="item-price">14</span>
-                            </div>
-                            <div class="item-description">
-                                Hand-whisked ceremonial-grade matcha layered with eggnog finished with matcha cold foam and winter goodie garnish. Silky, cozy, lightly sweet — matcha meets holiday glow.
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- CHAI WARMTH -->
                     <div class="subsection">
                         <div class="subsection-title">CHAI WARMTH</div>
@@ -990,21 +1075,6 @@
                             </div>
                             <div class="item-description">
                                 House gingerbread syrup with chai and milk,Topped with ginger-honey cinnamon cold foam, rosemary, and a gingerbread topper. Cozy spice, soft cream, and a winter-sweet finish.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SEASONAL GLOW -->
-                    <div class="subsection">
-                        <div class="subsection-title">SEASONAL GLOW</div>
-
-                        <div class="menu-item">
-                            <div class="item-header">
-                                <span class="item-name">SANTA'S COZY HOT CHOCOLATE</span>
-                                <span class="item-price">15</span>
-                            </div>
-                            <div class="item-description">
-                                Warm, red-tinted  house chocolate sauce, finished with whipped cream, toasted marshmallows, Christmas cookies, hand spun cotton candy, and festive marshmallow characters on a Teddy Graham cookie rim. Add our house-made peppermint syrup for holiday sparkle.
                             </div>
                         </div>
                     </div>
@@ -1030,6 +1100,15 @@
     <div id="santa"></div>
 
     <script>
+        // Detect query parameter and set mode (food/drinks)
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const mode = urlParams.get('mode') || 'food'; // Default to food if no param
+
+            // Add mode class to body
+            document.body.classList.add('mode-' + mode);
+        })();
+
         // Show page once fully loaded to prevent flash of unstyled content
         window.addEventListener('load', function() {
             document.body.classList.add('loaded');
